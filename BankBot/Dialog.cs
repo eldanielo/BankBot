@@ -69,9 +69,15 @@ namespace BankBot
                             }
                             //get date
                             Entity date = model.entities.FirstOrDefault(e => e.type == entity_Date);
-                            if (entity != null)
+                            if (date != null)
                             {
                                 entities.Add(new EntityRecommendation(null, date.entity, "TransferDate", date.startIndex, date.endIndex, date.score, null));
+                            }
+                            //get money
+                            Entity money = model.entities.FirstOrDefault(e => e.type == entity_Money);
+                            if (money != null)
+                            {
+                                entities.Add(new EntityRecommendation(null, money.entity, "amount", money.startIndex, money.endIndex, money.score, null));
                             }
                         }
                         IFormDialog<Transfer> tmp = MakeRootDialog(transfer, entities: entities);
@@ -111,7 +117,7 @@ namespace BankBot
         
         private async Task TransferComplete(IDialogContext context, IAwaitable<Transfer> result)
         {
-            await context.PostAsync("Ihre Anzeige wurde aufgenommen und die Ermittlungen haben begonnen");
+            await context.PostAsync("TAN was sent. Enter here: ");
             context.Wait(MessageReceivedAsync);
         }
 

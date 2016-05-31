@@ -16,11 +16,12 @@ namespace BankBot
 
 
             return new FormBuilder<Transfer>(true)
-                    .Message("Um Ihren Fall bestmöglich behandeln zu können geben Sie uns bitte folgende Informationen")
                     .Build();
         }
         public string recipient { get; set; }
         public DateTime TransferDate { get; set; }
+
+        public string amount { get; set; }
 
       
     }
