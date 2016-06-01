@@ -34,7 +34,11 @@ namespace BankBot
     {
         public string comment { get; set; }
         public string time { get; set; }
+        public string set { get; set; }
+        public string date { get; set; }
     }
+            
+            
 
 
 }

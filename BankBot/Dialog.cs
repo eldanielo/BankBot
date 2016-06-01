@@ -33,10 +33,15 @@ namespace BankBot
         const string entity_Date = "builtin.datetime.date";
         const string entity_Money = "builtin.money";
 
+        const string entity_schedule = "builtin.datetime.set";
+
         const string intent_transfer = "transfer";
         const string intent_transfer_order = "transfer_order";
         const string intent_hi = "hi";
 
+        const string set_year = "XXXX";
+        const string set_month = "XXXX-XX";
+        const string set_day = "XXXX-XX-XX";
         public async Task MessageReceivedAsync(IDialogContext context, IAwaitable<Message> argument)
         {
             var message = await argument;
@@ -50,44 +55,18 @@ namespace BankBot
                 {
                     case intent_hi:
 
+
                         await context.PostAsync("Hallo! Versuch mal: Where is the nearest police station?");
                         await context.PostAsync("Oder: Can I park here?");
                         await context.PostAsync("Oder: I was robbed!");
                         context.Wait(MessageReceivedAsync);
                         break;
                     case intent_transfer:
-                     
-                        Transfer transfer = new Transfer();
-                        List<EntityRecommendation> entities = new List<EntityRecommendation>();
 
-                        if (model.entities.Count() > 0)
-                        {
-                           //get recipient
-                            Entity entity = model.entities.FirstOrDefault(e => e.type == entity_Recipient);
-                            if (entity != null) {
-                                entities.Add(new EntityRecommendation(null, entity.entity, entity.type, entity.startIndex, entity.endIndex, entity.score, null));
-                            }
-                            //get date
-                            Entity date = model.entities.FirstOrDefault(e => e.type == entity_Date);
-                            if (date != null)
-                            {
-                                entities.Add(new EntityRecommendation(null, date.entity, "TransferDate", date.startIndex, date.endIndex, date.score, null));
-                            }
-                            //get money
-                            Entity money = model.entities.FirstOrDefault(e => e.type == entity_Money);
-                            if (money != null)
-                            {
-                                entities.Add(new EntityRecommendation(null, money.entity, "amount", money.startIndex, money.endIndex, money.score, null));
-                            }
-                        }
-                        IFormDialog<Transfer> tmp = MakeRootDialog(transfer, entities: entities);
+                        List<EntityRecommendation> entities = getBaseEntities(model);
+                        IFormDialog<Transfer> tmp = MakeRootDialog(new Transfer(), entities: entities);
                         context.Call(tmp, TransferComplete);
                         break;
-                    case "transfer_order":
-                      
-                     
-                        break;
-                  
                     default:
                         PostAndWait(context, "Das habe ich leider nicht verstanden");
                         break;
@@ -99,6 +78,66 @@ namespace BankBot
             }
 
         }
+
+        private static List<EntityRecommendation> getBaseEntities(LUISModel model)
+        {
+            List<EntityRecommendation> entities = new List<EntityRecommendation>();
+
+       
+                //get recipient
+                Entity entity = model.entities.FirstOrDefault(e => e.type == entity_Recipient);
+                if (entity != null)
+                {
+                    entities.Add(new EntityRecommendation(null, entity.entity, entity.type, entity.startIndex, entity.endIndex, entity.score, null));
+                }
+                //get date
+                Entity date = model.entities.FirstOrDefault(e => e.type == entity_Date);
+                if (date != null)
+                {
+                    string d = date.resolution.date.Replace("XXXX", DateTime.Now.Year.ToString());
+                    entities.Add(new EntityRecommendation(null, d, "date", date.startIndex, date.endIndex, date.score, null));
+                    
+                }
+                else {
+                    entities.Add(new EntityRecommendation(null, DateTime.Now.ToString(), "date"));
+                }
+                //get money
+                Entity money = model.entities.FirstOrDefault(e => e.type == entity_Money);
+                if (money != null)
+                {
+                    entities.Add(new EntityRecommendation(null, money.entity, "amount", money.startIndex, money.endIndex, money.score, null));
+                }
+                //get occurence
+                Entity schedule = model.entities.FirstOrDefault(e => e.type == entity_schedule);
+
+                string s = null;
+
+                if (schedule != null)
+                {
+                    switch (schedule.resolution.set)
+                    {
+                        case set_day:
+                            s = "once a day";
+                            break;
+                        case set_month:
+                            s = "once a month";
+                            break;
+                        case set_year:
+                            s = "once a year";
+                            break;
+
+                    }
+                }
+                else {
+                    s = "once";
+                }
+                entities.Add(new EntityRecommendation(null, s, "schedule"));
+
+
+            return entities;
+        }
+
+         
 
         private async void PostAndWait(IDialogContext context, string resp)
         {
@@ -117,7 +156,8 @@ namespace BankBot
         
         private async Task TransferComplete(IDialogContext context, IAwaitable<Transfer> result)
         {
-            await context.PostAsync("TAN was sent. Enter here: ");
+            
+            await context.PostAsync("TAN was sent to your phone. Enter here: ");
             context.Wait(MessageReceivedAsync);
         }
 
