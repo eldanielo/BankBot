@@ -25,7 +25,9 @@ namespace BankBot
                             .SetActive((state) => state.date == null))
                              .Field(new FieldReflector<Transfer>(nameof(schedule))
                             .SetActive((state) =>false))
+                            .Field(nameof(comment))
                 .Confirm("Do you want to transfer {amount} to {recipient} on {?{date}} {schedule}?" )                
+
                 .Field(nameof(recipient))
                 .Field(nameof(date))
                 .Field(nameof(amount))
@@ -43,6 +45,8 @@ namespace BankBot
         public string amount { get; set; }
         [Prompt("Do you want to repeat this transaction? eg. every month")]
         public string schedule { get; set; }
-      
+        [Prompt("Add a comment")]
+        public string comment { get; set; }
+
     }
 }

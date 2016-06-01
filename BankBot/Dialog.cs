@@ -56,9 +56,8 @@ namespace BankBot
                     case intent_hi:
 
 
-                        await context.PostAsync("Hallo! Versuch mal: Where is the nearest police station?");
-                        await context.PostAsync("Oder: Can I park here?");
-                        await context.PostAsync("Oder: I was robbed!");
+                        await context.PostAsync("Hi! Try \"send 100 euro to AT42134133\"\n\nor: \"transfer 1 million yen to john on december second every year\"");
+
                         context.Wait(MessageReceivedAsync);
                         break;
                     case intent_transfer:
@@ -117,13 +116,13 @@ namespace BankBot
                     switch (schedule.resolution.set)
                     {
                         case set_day:
-                            s = "once a day";
+                            s = "daily";
                             break;
                         case set_month:
-                            s = "once a month";
+                            s = "monthly";
                             break;
                         case set_year:
-                            s = "once a year";
+                            s = "yearly";
                             break;
 
                     }
