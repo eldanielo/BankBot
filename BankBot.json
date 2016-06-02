@@ -1,0 +1,349 @@
+{
+  "luis_schema_version": "1.2.0",
+  "name": "BanKBot",
+  "desc": "",
+  "culture": "en-us",
+  "intents": [
+    {
+      "Name": "None",
+      "Children": []
+    },
+    {
+      "Name": "transfer",
+      "Children": []
+    },
+    {
+      "Name": "hi",
+      "Children": []
+    }
+  ],
+  "entities": [
+    {
+      "Name": "recipient",
+      "Children": []
+    }
+  ],
+  "bing_entities": [
+    "money",
+    "datetime"
+  ],
+  "actions": [],
+  "model_features": [],
+  "regex_features": [],
+  "utterances": [
+    {
+      "text": "transfer 100 euros to john once a month starting on june 5",
+      "intent": "transfer",
+      "entities": [
+        {
+          "entity": "recipient",
+          "startPos": 4,
+          "endPos": 4
+        }
+      ]
+    },
+    {
+      "text": "transfer 100 euros to john today repeat every month",
+      "intent": "transfer",
+      "entities": [
+        {
+          "entity": "recipient",
+          "startPos": 4,
+          "endPos": 4
+        }
+      ]
+    },
+    {
+      "text": "transfer100 euros to john every monday",
+      "intent": "transfer",
+      "entities": [
+        {
+          "entity": "recipient",
+          "startPos": 3,
+          "endPos": 3
+        }
+      ]
+    },
+    {
+      "text": "pay 100 euros to john every day",
+      "intent": "transfer",
+      "entities": [
+        {
+          "entity": "recipient",
+          "startPos": 4,
+          "endPos": 4
+        }
+      ]
+    },
+    {
+      "text": "transfer 200 euros to john every month, starting today",
+      "intent": "transfer",
+      "entities": [
+        {
+          "entity": "recipient",
+          "startPos": 4,
+          "endPos": 4
+        }
+      ]
+    },
+    {
+      "text": "pay 100 euro to at23412",
+      "intent": "transfer",
+      "entities": [
+        {
+          "entity": "recipient",
+          "startPos": 4,
+          "endPos": 4
+        }
+      ]
+    },
+    {
+      "text": "send 100 euro to john",
+      "intent": "transfer",
+      "entities": [
+        {
+          "entity": "recipient",
+          "startPos": 4,
+          "endPos": 4
+        }
+      ]
+    },
+    {
+      "text": "on december the secound transfer 100 euros to at23445",
+      "intent": "transfer",
+      "entities": [
+        {
+          "entity": "recipient",
+          "startPos": 8,
+          "endPos": 8
+        }
+      ]
+    },
+    {
+      "text": "transfer 100 euros to at23413 on the first of may",
+      "intent": "transfer",
+      "entities": [
+        {
+          "entity": "recipient",
+          "startPos": 4,
+          "endPos": 4
+        }
+      ]
+    },
+    {
+      "text": "transfer 100 euros to at4523453 every first of may",
+      "intent": "transfer",
+      "entities": [
+        {
+          "entity": "recipient",
+          "startPos": 4,
+          "endPos": 4
+        }
+      ]
+    },
+    {
+      "text": "pay 2 dollar to at345245 on january first",
+      "intent": "transfer",
+      "entities": [
+        {
+          "entity": "recipient",
+          "startPos": 4,
+          "endPos": 4
+        }
+      ]
+    },
+    {
+      "text": "transfer 100 yen to de2134132",
+      "intent": "transfer",
+      "entities": [
+        {
+          "entity": "recipient",
+          "startPos": 4,
+          "endPos": 4
+        }
+      ]
+    },
+    {
+      "text": "pay 100 euros to john once a month",
+      "intent": "transfer",
+      "entities": [
+        {
+          "entity": "recipient",
+          "startPos": 4,
+          "endPos": 4
+        }
+      ]
+    },
+    {
+      "text": "buy choclate",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "transfer 100 euros to john every day",
+      "intent": "None",
+      "entities": [
+        {
+          "entity": "recipient",
+          "startPos": 4,
+          "endPos": 4
+        }
+      ]
+    },
+    {
+      "text": "transfer 20 euros to at112343124 each month",
+      "intent": "None",
+      "entities": [
+        {
+          "entity": "recipient",
+          "startPos": 4,
+          "endPos": 4
+        }
+      ]
+    },
+    {
+      "text": "pay 100 dollars to at234123",
+      "intent": "transfer",
+      "entities": [
+        {
+          "entity": "recipient",
+          "startPos": 4,
+          "endPos": 4
+        }
+      ]
+    },
+    {
+      "text": "transfer100 euros to john once a month",
+      "intent": "transfer",
+      "entities": [
+        {
+          "entity": "recipient",
+          "startPos": 3,
+          "endPos": 3
+        }
+      ]
+    },
+    {
+      "text": "book flight to paris",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "transfer 1 million yen to john on december second every",
+      "intent": "transfer",
+      "entities": [
+        {
+          "entity": "recipient",
+          "startPos": 5,
+          "endPos": 5
+        }
+      ]
+    },
+    {
+      "text": "pay all my employees",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "send 100 euro to at423454",
+      "intent": "transfer",
+      "entities": [
+        {
+          "entity": "recipient",
+          "startPos": 4,
+          "endPos": 4
+        }
+      ]
+    },
+    {
+      "text": "pay 100 euros to at24524 on june 23",
+      "intent": "transfer",
+      "entities": [
+        {
+          "entity": "recipient",
+          "startPos": 4,
+          "endPos": 4
+        }
+      ]
+    },
+    {
+      "text": "transfer 1 million euro to john on december second every year",
+      "intent": "transfer",
+      "entities": [
+        {
+          "entity": "recipient",
+          "startPos": 5,
+          "endPos": 5
+        }
+      ]
+    },
+    {
+      "text": "transfer100 euros to john every year on june first",
+      "intent": "transfer",
+      "entities": [
+        {
+          "entity": "recipient",
+          "startPos": 3,
+          "endPos": 3
+        }
+      ]
+    },
+    {
+      "text": "pay 100 euros to at3453 tomorrow",
+      "intent": "transfer",
+      "entities": [
+        {
+          "entity": "recipient",
+          "startPos": 4,
+          "endPos": 4
+        }
+      ]
+    },
+    {
+      "text": "transfer 20 euro to at234123",
+      "intent": "transfer",
+      "entities": [
+        {
+          "entity": "recipient",
+          "startPos": 4,
+          "endPos": 4
+        }
+      ]
+    },
+    {
+      "text": "hi",
+      "intent": "hi",
+      "entities": []
+    },
+    {
+      "text": "hello",
+      "intent": "hi",
+      "entities": []
+    },
+    {
+      "text": "hey",
+      "intent": "hi",
+      "entities": []
+    },
+    {
+      "text": "transfer",
+      "intent": "transfer",
+      "entities": []
+    },
+    {
+      "text": "pay",
+      "intent": "transfer",
+      "entities": []
+    },
+    {
+      "text": "?",
+      "intent": "hi",
+      "entities": []
+    },
+    {
+      "text": "überweise",
+      "intent": "transfer",
+      "entities": []
+    }
+  ]
+}
